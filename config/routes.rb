@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
@@ -11,4 +12,11 @@ Rails.application.routes.draw do
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     resources :users, only: [:new, :create, :index, :show]
     resources :sessions, only: [:new, :create, :destroy]
+
+    get "/dashboard", to: "dashboard#index"
+    get "/client/delete/:id", to: "clients#destroy"
+    resources :clients
+
 end
+
+
