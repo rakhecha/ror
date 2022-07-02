@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :create, :index, :show]
     resources :sessions, only: [:new, :create, :destroy]
 
+    get "/admin", to: "sessions#new"
+
     get "/user/logout", to: "sessions#destroy"
 
     get "/dashboard", to: "dashboard#index"
