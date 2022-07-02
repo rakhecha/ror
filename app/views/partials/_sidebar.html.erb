@@ -6,10 +6,21 @@
    <!-- main menu content-->
    <div class="main-menu-content">
       <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+         <% if current_page?(:controller => 'dashboard') %>
+         <li class=" nav-item active"><a href="/dashboard"><i class="icon-home3"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Dashboard</span></a>
+         </li>
+         <% else %>
          <li class=" nav-item"><a href="/dashboard"><i class="icon-home3"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Dashboard</span></a>
          </li>
+         <% end %>
+         <% if current_page?(:controller => 'clients') %>
+         <li class=" nav-item active"><a href="/clients"><i class="icon-home3"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Clients</span></a>
+         </li>
+         <% else %>
          <li class=" nav-item"><a href="/clients"><i class="icon-home3"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Clients</span></a>
          </li>
+         <% end %>
+         
          <li class=" nav-item"><a href="table-basic.html"><i class="icon-home3"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Invoices</span></a>
          </li>
       </ul>
