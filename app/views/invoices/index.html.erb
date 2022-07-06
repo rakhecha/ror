@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    Clients
+    Invoices
 <% end %>
 <%= render :partial => 'partials/header'%>
 <!-- main menu-->
@@ -13,11 +13,11 @@
             <div class="match-height">
                <div class="card p-0">
                   <div class="card-header">
-                     <h4 class="card-title">All Clients</h4>
+                     <h4 class="card-title">All Invoices</h4>
                      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                      <div class="heading-elements">
                         <ul class="list-inline mb-0">
-                           <li><a href="/clients/new"><button type="button" class="btn btn-primary">+New Client</button></a></li>
+                           <li><a href="/invoices/new"><button type="button" class="btn btn-primary">+New Invoice</button></a></li>
                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
@@ -38,25 +38,25 @@
                               <thead class="thead-inverse">
                                  <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th width="20%">Billing Address</th>
-                                    <th width="20%">Phone Number</th>
+                                    <th>Amount</th>
+                                    <th width="20%">Currency</th>
+                                    <th width="20%">Contract Type</th>
+                                    <th width="20%">Payment Cycle</th>
                                     <th class="list_action01">Action</th>
                                  </tr>
                               </thead>
                               <tbody>
 
-                                <% @clients.each_with_index do |client, key| %>
+                                <% @invoices.each_with_index do |invoice, key| %>
                                     <tr>
                                         <td><%= key+1 %></td>
-                                        <td><%= client.company_name %></td>
-                                        <td><%= client.billing_address %></td>
-                                        <td><%= client.phone_number %></td>
+                                        <td><%= invoice.amount %></td>
+                                        <td><%= invoice.currency %></td>
+                                        <td><%= invoice.contract_type %></td>
+                                        <td><%= invoice.payment_cycle %></td>
                                         <td class="list_action01">
-                                            
-                                            <a href="<%= edit_client_path(client) %>"><button type="button" class="btn btn-warning">Edit</button></a>
-                                            <%= button_to 'Destroy', client, method: :delete, remote: true, class: "btn btn-danger",  :confirm => 'Are you sure?'  %></a>
-                                           
+                                            <a href="<%= edit_invoice_path(invoice) %>"><button type="button" class="btn btn-warning">Edit</button></a>
+                                            <a href="/invoice/delete/<%= invoice.id %>" onclick="return confirm('Are you sure?')"><button type="button" class="btn btn-danger" >Delete</button></a>
                                         </td>
                                     </tr>
                                 <% end %>

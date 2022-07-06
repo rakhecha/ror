@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:create, :new]
   def new
     if current_user.present?
-      redirect_to '/dashboard'
+      redirect_to '/clients'
     end
   end
 
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(session_params[:password])
       session[:user_id] = @user.id
-      redirect_to '/dashboard'
+      redirect_to '/clients'
     else
       flash[:notice] = "Login is invalid!"
       redirect_to new_session_path

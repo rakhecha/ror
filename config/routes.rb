@@ -18,8 +18,11 @@ Rails.application.routes.draw do
     get "/user/logout", to: "sessions#destroy"
 
     get "/dashboard", to: "dashboard#index"
-    get "/client/delete/:id", to: "clients#destroy"
+
+    # Client routes
     resources :clients
+    # Invoice routess
+    resources :invoices
 
 end
 

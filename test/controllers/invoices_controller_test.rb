@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DashboardTest < ActiveSupport::TestCase
+class InvoicesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
