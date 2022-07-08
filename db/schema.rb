@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_03_144307) do
-  create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "clients", force: :cascade do |t|
     t.string "company_name"
     t.text "billing_address"
     t.string "phone_number"
@@ -19,12 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_144307) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "dashboards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "invoices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "invoices", force: :cascade do |t|
     t.string "amount"
     t.string "currency"
     t.string "contract_type"
@@ -36,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_144307) do
     t.index ["client_id"], name: "index_invoices_on_client_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false

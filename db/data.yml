@@ -1,0 +1,30 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - 2022-06-30 11:57:19.202482000 Z
+    - 2022-06-30 11:57:19.202482000 Z
+
+---
+users:
+  columns:
+  - id
+  - email
+  - password_digest
+  - created_at
+  - updated_at
+  - name
+  records: 
+  - - 2
+    - praveen.rakhecha@dianapps.com
+    - "$2a$10$Z5wGmULMSMxSqryYmvsflOcxk5T7D.2xfvIcISygndW9TLF8LISR6"
+    - 2022-07-02 11:59:36.278232000 Z
+    - 2022-07-02 11:59:36.278232000 Z
+    - Praveen
