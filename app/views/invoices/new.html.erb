@@ -66,7 +66,7 @@
 
                            <div class="form-group">
                               <label>Payment Cycle</label>
-                              <%= form.select :contract_type, options_for_select(['Monthly', 'Semi Monthly', 'Weekly']), {}, { :class => 'form-control' } %>
+                              <%= form.select :payment_cycle, options_for_select(['Monthly', 'Semi Monthly', 'Weekly']), {}, { :class => 'form-control' } %>
                               <% @invoice.errors.full_messages_for(:payment_cycle).each do |message| %>
                                  <div class="text-danger"><%= message %></div>
                                <% end %>
