@@ -38,6 +38,7 @@
                               <thead class="thead-inverse">
                                  <tr>
                                     <th>#</th>
+                                    <th>Company Name</th>
                                     <th>Amount</th>
                                     <th width="20%">Currency</th>
                                     <th width="20%">Contract Type</th>
@@ -50,13 +51,14 @@
                                 <% @invoices.each_with_index do |invoice, key| %>
                                     <tr>
                                         <td><%= key+1 %></td>
+                                        <td><%= Client.find(invoice.client_id).company_name %></td>
                                         <td><%= invoice.amount %></td>
                                         <td><%= invoice.currency %></td>
                                         <td><%= invoice.contract_type %></td>
                                         <td><%= invoice.payment_cycle %></td>
                                         <td class="list_action01">
                                             <a href="<%= edit_invoice_path(invoice) %>"><button type="button" class="btn btn-warning">Edit</button></a>
-                                            <a href="/invoice/delete/<%= invoice.id %>" onclick="return confirm('Are you sure?')"><button type="button" class="btn btn-danger" >Delete</button></a>
+                                            <%= button_to 'Destroy', invoice, method: :delete, remote: true, class: "btn btn-danger",  :confirm => 'Are you sure?'  %></a>
                                         </td>
                                     </tr>
                                 <% end %>

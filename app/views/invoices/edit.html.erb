@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    Edit Client
+   Invoices
 <% end %>
 <%= render :partial => 'partials/header'%>
 <!-- main menu-->
@@ -13,7 +13,7 @@
             <div class="match-height">
                <div class="card p-0">
                   <div class="card-header">
-                     <h4 class="card-title" id="basic-layout-tooltip">Edit Client</h4>
+                     <h4 class="card-title" id="basic-layout-tooltip">Edit Invoice</h4>
                      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                      <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -25,30 +25,49 @@
                   </div>
                   <div class="card-body collapse in">
                      <div class="card-block">
-                        <%= form_with model: @client do |form| %>
+                        <%= form_with model: @invoice do |form| %>
                         <div class="form-body">
-                           <div class="form-group">
-                              <label>Company Name</label>
-                              <input type="text" class="form-control" placeholder="Company Name" name="client[company_name]" value="<%= @client.company_name %>" >
-                              <% @client.errors.full_messages_for(:company_name).each do |message| %>
-                                <div class="text-danger"><%= message %></div>
-                              <% end %>
-                           </div>
-                           <div class="form-group">
-                              <label>Billing Address</label>
-                              <textarea rows="5" class="form-control" name="client[billing_address]" placeholder="Billing Address" ><%= @client.billing_address %></textarea>
-                              <% @client.errors.full_messages_for(:billing_address).each do |message| %>
-                                <div class="text-danger"><%= message %></div>
-                              <% end %>
-                           </div>
-                           <div class="form-group">
-                              <label>Phone Number</label>
-                              <input type="text" class="form-control" placeholder="Phone Number" name="client[phone_number]" value="<%= @client.phone_number %>" >
-                              <% @client.errors.full_messages_for(:phone_number).each do |message| %>
-                                <div class="text-danger"><%= message %></div>
-                              <% end %>
+
+                        <% @clients  = Client.all %>
+                        <div class="form-group">
+                              <label>Client</label>
+                              <%= form.select :client_id, @clients.map { |t| [t.company_name, t.id]}, {}, class: "form-control" %>
+                              <% @invoice.errors.full_messages_for(:company_name).each do |message| %>
+                                 <div class="text-danger"><%= message %></div>
+                               <% end %>
                            </div>
                            
+                           <div class="form-group">
+                              <label>Amount</label>
+                              <input type="text" class="form-control" placeholder="Amount" name="invoice[amount]" value="<%= @invoice.amount %>">
+                              <% @invoice.errors.full_messages_for(:amount).each do |message| %>
+                                <div class="text-danger"><%= message %></div>
+                              <% end %>
+                           </div>
+
+                           <div class="form-group">
+                              <label>Currency</label>
+                              <%= form.select :currency, options_for_select(['Rupee', 'Dollor'], :selected => form.object.currency), {}, { :class => 'form-control' } %>
+                              <% @invoice.errors.full_messages_for(:currency).each do |message| %>
+                                 <div class="text-danger"><%= message %></div>
+                               <% end %>
+                           </div>
+                                 
+                           <div class="form-group">
+                              <label>Contract Type</label>
+                              <%= form.select :contract_type, options_for_select(['Monthly', 'Hourly'], :selected => form.object.contract_type), {}, { :class => 'form-control' } %>
+                              <% @invoice.errors.full_messages_for(:contract_type).each do |message| %>
+                                 <div class="text-danger"><%= message %></div>
+                               <% end %>
+                           </div>
+
+                           <div class="form-group">
+                              <label>Payment Cycle</label>
+                              <%= form.select :payment_cycle, options_for_select(['Monthly', 'Semi Monthly', 'Weekly'], :selected => form.object.payment_cycle), {}, { :class => 'form-control' } %>
+                              <% @invoice.errors.full_messages_for(:payment_cycle).each do |message| %>
+                                 <div class="text-danger"><%= message %></div>
+                               <% end %>
+                           </div>
                            <div class="form-actions">
                               <button type="submit" class="btn btn-primary">
                               <i class="icon-check2"></i> Save

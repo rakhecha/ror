@@ -33,6 +33,7 @@ class InvoicesController < ApplicationController
     
     def new
         @invoice = Invoice.new
+        @clients  = Client.all
     end
     
     def destroy

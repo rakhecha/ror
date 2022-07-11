@@ -57,5 +57,5 @@ test:
 production:
   <<: *default
   database: blog_production
-  username: haguoapncfzypo
-  password: 8ac6e0d04e36625fd00ae9560ff21da1be9920dc686b614eba87a365b51df355
+  username: blog
+  password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
