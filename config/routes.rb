@@ -10,13 +10,11 @@ Rails.application.routes.draw do
   # root "articles#index"
 
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    resources :users, only: [:new, :create, :index, :show]
+    # resources :users, only: [:new, :create, :index, :show]
     resources :sessions, only: [:new, :create, :destroy]
 
     get "/admin", to: "sessions#new"
-
     get "/user/logout", to: "sessions#destroy"
-
     get "/dashboard", to: "dashboard#index"
 
     # Client routes

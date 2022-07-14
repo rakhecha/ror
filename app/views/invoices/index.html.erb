@@ -48,10 +48,11 @@
                               </thead>
                               <tbody>
 
+                                 
                                 <% @invoices.each_with_index do |invoice, key| %>
                                     <tr>
                                         <td><%= key+1 %></td>
-                                        <td><%= Client.find(invoice.client_id).company_name %></td>
+                                        <td><%= invoice.client.company_name %></td>
                                         <td><%= invoice.amount %></td>
                                         <td><%= invoice.currency %></td>
                                         <td><%= invoice.contract_type %></td>
