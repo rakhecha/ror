@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
     def index
-        @invoices = Invoice.all
+        @invoices  = Invoice.paginate(:page => params[:page], :per_page=>2)
+        # @invoices = Invoice.all
     end
     
     def show
@@ -11,7 +12,7 @@ class InvoicesController < ApplicationController
         @invoice = Invoice.new(invoice_params)
         if @invoice.save
           flash[:notice] = 'Invoice successfully added'
-          redirect_to '/invoices'
+          redirect_to invoices_path
         else
           render :new, status: :unprocessable_entity
         end
@@ -25,7 +26,7 @@ class InvoicesController < ApplicationController
     
         if @invoice.update(invoice_params)
           flash[:notice] = 'Invoice successfully updated'
-          redirect_to '/invoices'
+          redirect_to invoices_path
         else
           render :edit, status: :unprocessable_entity
         end
@@ -40,13 +41,13 @@ class InvoicesController < ApplicationController
         @invoice = Invoice.find(params[:id])
         @invoice.destroy
         flash[:notice] = 'Invoice successfully deleted'
-        redirect_to '/invoices'
+        redirect_to invoices_path
     end
     
     private
-        def invoice_params      
-          params.require(:invoice).permit(:amount, :currency, :contract_type, :payment_cycle, :client_id)
-        end
+      def invoice_params      
+        params.require(:invoice).permit(:amount, :currency, :contract_type, :payment_cycle, :client_id, :day_of_month, :day_of_week)
+      end
     
 end
     

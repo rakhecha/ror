@@ -39,6 +39,7 @@
                                  <tr>
                                     <th>#</th>
                                     <th>Company Name</th>
+                                    <th>Invoice Number</th>
                                     <th>Amount</th>
                                     <th width="20%">Currency</th>
                                     <th width="20%">Contract Type</th>
@@ -47,12 +48,12 @@
                                  </tr>
                               </thead>
                               <tbody>
-
-                                 
+                              
                                 <% @invoices.each_with_index do |invoice, key| %>
                                     <tr>
                                         <td><%= key+1 %></td>
                                         <td><%= invoice.client.company_name %></td>
+                                        <td><%= invoice.client.company_name.parameterize(separator: '_') %>_<%= invoice.invoice %></td>
                                         <td><%= invoice.amount %></td>
                                         <td><%= invoice.currency %></td>
                                         <td><%= invoice.contract_type %></td>
@@ -63,6 +64,7 @@
                                         </td>
                                     </tr>
                                 <% end %>
+                                <%= will_paginate @invoices %>
                               </tbody>
                            </table>
                         </div>
@@ -74,3 +76,4 @@
       </div>
    </div>
 </div>
+

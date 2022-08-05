@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+  # get 'sessions/new'
+  # get 'sessions/create'
+  # get 'sessions/destroy's
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
